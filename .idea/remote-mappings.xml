@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@sftp://22yzy@210.47.18.59:22/home/22yzy/.conda/envs/pytorch/bin/python3.7">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/mnt/Data1/yzy/code/pathway/pure_pathway_2" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>
