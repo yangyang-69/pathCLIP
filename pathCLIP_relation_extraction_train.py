@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+'''
+@Project ：CLIP_327
+@File    ：my_clip_1226.py
+@Author  ：yang
+@Date    ：2023/12/26 18:58
+'''
 import os
 from dataclasses import dataclass, field
 from typing import Optional
@@ -113,8 +121,10 @@ class TextEncoder(nn.Module):  # 文本encode
             model_args = ModelArguments()
             config = AutoConfig.from_pretrained(  # 加载自动配置
                 model_args.config_name if model_args.config_name else model_args.model_name_or_path,
-                num_labels=2,
-                finetuning_task="SST-2",
+                # num_labels=2,
+                # finetuning_task="SST-2",
+                num_labels=4,
+                finetuning_task="SST",
                 cache_dir=model_args.cache_dir,  # 'bert-base-cased'
             )
             model = AutoModelForSequenceClassification.from_pretrained(
@@ -124,7 +134,7 @@ class TextEncoder(nn.Module):  # 文本encode
                 cache_dir=model_args.cache_dir,
             )
             ### 加载我们训练的模型权重
-            model.load_state_dict(torch.load('pytorch_model.bin'))
+            # model.load_state_dict(torch.load('pytorch_model_1226_entity_new.bin'))
             self.model = model.to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
         else:
             self.model = DistilBertModel(config=DistilBertConfig())
@@ -188,7 +198,8 @@ class CLIPModel(nn.Module):
 
         texts_loss = cross_entropy(logits, targets, reduction='none')
         images_loss = cross_entropy(logits.T, targets.T, reduction='none')
-        loss = (images_loss + texts_loss) / 2.0  # shape: (batch_size)
+        # loss = (images_loss + texts_loss) / 2.0  # shape: (batch_size)
+        loss = images_loss * 0.5 + texts_loss * 0.5  # shape: (batch_size)
         return loss.mean()
 
 
@@ -223,7 +234,7 @@ def train_epoch(model, train_loader, optimizer, lr_scheduler, step):
         i += 1
         batch = {k: v.to(CFG.device) for k, v in batch.items() if k != "sentence"}
         loss = model(batch)
-        save_loss(CFG.loss_file, loss.item(), iteration=i)
+        save_loss(CFG.loss_file_entity_1228, loss.item(), iteration=i)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -242,7 +253,7 @@ def valid_epoch(model, valid_loader):
         idx += 1
         batch = {k: v.to(CFG.device) for k, v in batch.items() if k != "sentence"}
         loss = model(batch)
-        save_loss(CFG.loss_file, loss.item(), iteration=idx, model='valid')
+        save_loss(CFG.loss_file_entity, loss.item(), iteration=idx, model='valid')
         count = batch["image"].size(0)
         loss_meter.update(loss.item(), count)
         tqdm_object.set_postfix(valid_loss=loss_meter.avg)
@@ -264,6 +275,7 @@ def draw_loss(Loss_list,epoch):
     plt.show()
 
 def main():
+
     train_df, valid_df = make_train_valid_dfs1()  ###
     print('train_df:', len(train_df))
 
@@ -295,11 +307,11 @@ def main():
 
         if train_loss.avg < best_loss:
             best_loss = train_loss.avg
-            torch.save(model.state_dict(), "my_best.pt")
+            torch.save(model.state_dict(), "my_best_re.pt")
             print("Saved Best Model!")
 
     draw_loss(Loss_list,CFG.epochs)
-    torch.save(model.state_dict(), "my_last_model.pt")
+    torch.save(model.state_dict(), "my_last_model_re.pt")
     print("Saved Last Model!")
 
 if __name__ == '__main__':

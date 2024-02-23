@@ -3,13 +3,11 @@ Detection of Genes and Gene Relations from Biological Pathway Figures through Im
 
 
 ## Abstract
-We present a pathway figure curation system named pathCLIP for identifying genes and gene relations from pathway figures. Our key innovation is the use of an image-text contrastive learning model to learn coordinated embeddings of image snippets and text descriptions of genes and gene relations, thereby improving curation. Our validation results, using pathway figures from PubMed, showed that our multimodal model outperforms models using only a single modality. Additionally, our system effectively curates genes and gene relations from multiple literature sources. A case study on extracting pathway information from non-small cell lung cancer literature further demonstrates the usefulness of our curated pathway information in enhancing related pathways in the KEGG database.
+We present a pathway figure curation system named pathCLIP for identifying genes and gene relations from pathway figures. Our key innovation is the use of an image-text contrastive learning model to learn coordinated embeddings of image snippets and text descriptions of genes and gene relations, thereby improving curation. Our validation results, using pathway figures from PubMed, showed that our multimodal model outperforms models using only a single modality. Additionally, our system effectively curates genes and gene relations from multiple literature sources. Two case studies on extracting pathway information from literature of non-small cell lung cancer and Alzheimer’s disease further demonstrate the usefulness of our curated pathway information in enhancing related pathways in the KEGG database.
 
-# Overview
+# Overview of pipeline
+![](readme_images/pipeline.jpg)
 We developed pathCLIP, a comprehensive framework designed to extract genes and their relations from biological pathway figures and associated text descriptions, which mainly includes three key components: (1) the image module to extract visual embedding from pathway figures, (2) the text module to generate text embedding from article text, and (3) the image-text contrastive learning module to achieve the tasks of gene entity recognition and relation extraction.
-
-
-##  Pathway identifier and object detection
 
 It is a deep learning framework for extracting the relationship between genes in **pathway images** or **PDFs**.
 
@@ -17,9 +15,16 @@ There are two kinds of data testing operation modes: Mode1, Mode2, and both of t
 
 ## Profile
 
-**mmocr , config :** mmocr related files and configuration, in order to achieve the purpose of text recognition.(mmocr from mmocr.zip)
+**mmocr , config :** mmocr related files and configuration, in order to achieve the purpose of text recognition.
 
-**paper:** operation mode2, the folder where the PDF is placed.
+**model:** Our all models used for pathCLIP pipeline. 
+(Baidu Netdisk: https://pan.baidu.com/s/1-8bY3t9-DjGHwFJImuEFRw : 4wwb)
+
+**test:** operation for mode1, the folder where the pathway figures are placed. 
+(Baidu Netdisk: https://pan.baidu.com/s/1GTgw5HepAigoZfMlN8NCeg : aeo4)
+
+**paper:** operation for mode2, the folder where the PDFs are placed. 
+(Baidu Netdisk: https://pan.baidu.com/s/1G63-FTilJq7W40xnulY-4w : 006m)
 
 **retinanet:** pathway identifier configuration.
 
@@ -27,7 +32,7 @@ There are two kinds of data testing operation modes: Mode1, Mode2, and both of t
 
 ## Data preparation
 
-Mode1：pathway images, place the images in the **test** folder directory.
+Mode1：pathway images, place the images in the **test** folder directory. Or you can use the pathway figures we prepared.
 
 The data schema to run our code is as follows :
 
@@ -39,7 +44,7 @@ The data schema to run our code is as follows :
  | | |__img3.jpg  # The pathway picture you placed
 ```
 
-Mode2：PDFs with pathway images, place the PDF in the **paper** folder directory.
+Mode2：PDFs with pathway images, place the PDF in the **paper** folder directory. Or you can use the PDF file we prepared.
 
 The data schema to run our code is as follows :
 
@@ -89,11 +94,16 @@ The result structure generated after the operation is as follows:
  | | | |__image1.jpg  # Pathway pictures extracted from PDF
 ```
 
-## Training
 
-### pathCLIP
+## pathCLIP for relation extraction 
+### Training
 
-run **pathCLIP_relation_extraction_train.py**. (Generally, you can use the trained model provided by us.)
+run **pathCLIP_relation_extraction_train.py**. You can get training image at Baidu Netdisk https://pan.baidu.com/s/17sQpH4sHAgtGRDLRktNSLg
+(a407). And you can refer to our organization form of image-text pairs. at Baidu Netdisk https://pan.baidu.com/s/13IW-GE35rLcOmXvEr7_ERg(g5rg)
+
+### Testing
+
+run **pathCLIP_relation_extraction_inference.py**. You can get model at Baidu Netdisk https://pan.baidu.com/s/1tTJeKYwNwNLqlm4C4Mbpdg(lb1i) and get testing dataset at https://pan.baidu.com/s/1sis8BWog3bIRworjMKF8lg(tjvg)
 
 ## Update
 
