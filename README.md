@@ -94,16 +94,34 @@ The result structure generated after the operation is as follows:
  | | | |__image1.jpg  # Pathway pictures extracted from PDF
 ```
 
+## pathCLIP for gene detection
+### Training
+
+run **pathCLIP_gene_detection_train.py**. 
+- Training image: Baidu Netdisk https://pan.baidu.com/s/1DwAy87c-LEJXPHVQeAqCqQ
+  (jr0z).
+- You can refer to our organization form of image-text pairs. at Baidu Netdisk https://pan.baidu.com/s/1p0KKKFDkkBVJX_18wxJoCw(f5tr).
+
+### Testing
+
+run **pathCLIP_gene_detection_inference.py**. 
+- Model: Baidu Netdisk https://pan.baidu.com/s/1HOwX7_29yxSnacg-hBIsJw(nn01). 
+- Testing dataset: Baidu Netdisk 链接：https://pan.baidu.com/s/1XS8Gb8kFynrcx-qck2aK7w(yr98).
+
 
 ## pathCLIP for relation extraction 
 ### Training
 
-run **pathCLIP_relation_extraction_train.py**. You can get training image at Baidu Netdisk https://pan.baidu.com/s/17sQpH4sHAgtGRDLRktNSLg
-(a407). And you can refer to our organization form of image-text pairs. at Baidu Netdisk https://pan.baidu.com/s/13IW-GE35rLcOmXvEr7_ERg(g5rg)
+run **pathCLIP_relation_extraction_train.py**. 
+- Training image: Baidu Netdisk https://pan.baidu.com/s/17sQpH4sHAgtGRDLRktNSLg
+(a407). 
+- You can refer to our organization form of image-text pairs. at Baidu Netdisk https://pan.baidu.com/s/13IW-GE35rLcOmXvEr7_ERg(g5rg).
 
 ### Testing
 
-run **pathCLIP_relation_extraction_inference.py**. You can get model at Baidu Netdisk https://pan.baidu.com/s/1tTJeKYwNwNLqlm4C4Mbpdg(lb1i) and get testing dataset at https://pan.baidu.com/s/1sis8BWog3bIRworjMKF8lg(tjvg)
+run **pathCLIP_relation_extraction_inference.py**. 
+- Model: Baidu Netdisk https://pan.baidu.com/s/1tTJeKYwNwNLqlm4C4Mbpdg(lb1i).
+- Testing dataset: Baidu Netdisk https://pan.baidu.com/s/1sis8BWog3bIRworjMKF8lg(tjvg).
 
 ## Update
 
