@@ -126,3 +126,20 @@ run **pathCLIP_relation_extraction_inference.py**.
 ## Update
 
 We may modify the gene bank in the **exHUGO_latest.json** file, and the file will be updated from time to time.
+
+## Citation
+This repository contains the source code for the paper **pathCLIP: Detection of Genes and Gene Relations From Biological Pathway Figures Through Image-Text Contrastive Learning**. Fei He, Kai Liu, Zhiyuan Yang, Yibo Chen, Richard D Hammer, Dong Xu, Mihail Popescu. IEEE Journal of Biomedical and Health Informatics, vol. 28, no. 8, pp. 5007-5019, Aug. 2024. <https://ieeexplore.ieee.org/document/10490093/authors#authors>
+
+```latex
+@ARTICLE{10490093,
+  author={He, Fei and Liu, Kai and Yang, Zhiyuan and Chen, Yibo and Hammer, Richard D. and Xu, Dong and Popescu, Mihail},
+  journal={IEEE Journal of Biomedical and Health Informatics}, 
+  title={pathCLIP: Detection of Genes and Gene Relations From Biological Pathway Figures Through Image-Text Contrastive Learning}, 
+  year={2024},
+  volume={28},
+  number={8},
+  pages={5007-5019},
+  keywords={Self-supervised learning;Biology;Object detection;Data mining;Head;Testing;Databases;Contrastive learning;entity detection;literature mining;pathway figures;relation extraction},
+  doi={10.1109/JBHI.2024.3383610}}
+}
+```
